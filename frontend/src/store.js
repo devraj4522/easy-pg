@@ -4,7 +4,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {
   userLoginReducer,
   userRegisterReducer,
+  userProfileReducer,
 } from './redux/reducers/userReducer';
+
 import {
   createPostReducer,
   editPostReducer,
@@ -17,6 +19,7 @@ import {
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userProfile: userProfileReducer,
   posts: combineReducers({
     createPost: createPostReducer,
     editPost: editPostReducer,

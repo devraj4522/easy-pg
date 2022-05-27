@@ -7,6 +7,9 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_PROFILE_REQUEST,
+  USER_PROFILE_SUCCESS,
+  USER_PROFILE_FAIL,
 } from '../constants/userConstants';
 import { toast } from 'react-toastify';
 
@@ -91,6 +94,41 @@ export const register = (name, phone, email, password) => async (dispatch) => {
     toast.error(`Error: ${err}`);
     dispatch({
       type: USER_LOGIN_FAIL,
+      payload: err,
+    });
+  }
+};
+
+export const viewProfileRequest = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_PROFILE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get('api/users/profile/', config);
+    dispatch({
+      type: USER_PROFILE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const err =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    toast.error(`Error: ${err}`);
+    dispatch({
+      type: USER_PROFILE_FAIL,
       payload: err,
     });
   }

@@ -55,7 +55,7 @@ export default function DrawerComponent({ open, toggleDrawer }) {
               <ListItemIcon sx={{ color: 'rgba(220, 218, 222, 0.83)' }}>
                 <AddIcon />
               </ListItemIcon>
-              <ListItemText primary="Create Post" />
+              <ListItemText primary="Register PG" />
             </ListItem>
             <ListItem
               button
@@ -66,7 +66,7 @@ export default function DrawerComponent({ open, toggleDrawer }) {
               <ListItemIcon sx={{ color: 'rgba(220, 218, 222, 0.83)' }}>
                 <DynamicFeedIcon />
               </ListItemIcon>
-              <ListItemText primary="My Posts" />
+              <ListItemText primary="Manage PG" />
             </ListItem>
           </List>
           <Box

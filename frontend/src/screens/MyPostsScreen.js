@@ -6,6 +6,8 @@ import MyPGPostCard from './../components/MyPGPostCard';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Bottom } from './Bottom';
+import { Paper } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 const MyPostsScreen = () => {
   const dispatch = useDispatch();
@@ -16,9 +18,24 @@ const MyPostsScreen = () => {
   return (
     <>
       <Box sx={{ m: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          My Posts
-        </Typography>
+        <Paper
+          elevation={1}
+          sx={{
+            background: '#bb86fc',
+            py: 1,
+            mb: 4,
+            maxWidth: 300,
+            mx: 'auto',
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{ textAlign: 'center', color: '#fff' }}
+            gutterBottom
+          >
+            Your PG
+          </Typography>
+        </Paper>
         <Grid container spacing={2} alignItems="space-around">
           {all_posts?.map((post) => (
             <Grid

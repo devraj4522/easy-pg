@@ -150,7 +150,7 @@ const ViewPostByIdScreen = () => {
           <Typography variant="h5" gutterBottom sx={{ mt: 2 }}>
             Amenities Available:
           </Typography>
-          <Grid container spacing={4} sx={{ my: 2 }}>
+          <Grid container spacing={4} sx={{ my: 2, position: 'relative' }}>
             {current_post.amenities?.laundry && (
               <Grid item md={1}>
                 <LocalLaundryServiceIcon sx={{ fontSize: '2rem' }} />

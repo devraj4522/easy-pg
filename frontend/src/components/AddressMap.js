@@ -15,11 +15,11 @@ const AddressMap = (props) => {
       <Map
         antialias={true}
         containerStyle={{
-          height: '58vh',
-          width: '38%',
+          height: '430px',
+          width: '50%',
           position: 'absolute',
-          right: '8.7vw',
-          top: '78.8vh',
+          right: '-40px',
+          top: '-113px',
           transition: '.5s',
           overflow: 'hidden',
           borderRadius: '10px',
