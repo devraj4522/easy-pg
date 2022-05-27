@@ -26,11 +26,18 @@ export default function MyPGPostCard({
     navigator(`/post/${postid}`);
   };
   return (
-    <Card sx={{ display: 'flex', flexDirection: 'column' }}>
+    <Card
+      sx={{
+        maxWidth: 595,
+        display: 'flex',
+        flexDirection: 'column',
+        cursor: 'pointer',
+      }}
+    >
       <CardMedia
         component="img"
         alt="green iguana"
-        height="140"
+        height="250"
         image={photo}
         onClick={handleView}
       />

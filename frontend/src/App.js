@@ -16,6 +16,7 @@ import PGListScreen from './screens/PGListScreen';
 import { ThemeProvider } from '@mui/system';
 import { theme } from './theme';
 import { createTheme } from '@mui/material';
+import { Bottom } from './screens/Bottom';
 
 function App() {
   const local_theme = createTheme(theme);
@@ -41,6 +42,7 @@ function App() {
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
+          <Bottom />
         </BrowserRouter>
       </ThemeProvider>
     </>

@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import DrawerComponent from './DrawerComponent';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/actions/userActions';
+import { grey } from '@mui/material/colors';
 
 export default function ButtonAppBar() {
   const userLogin = useSelector((state) => state.userLogin);
@@ -65,7 +66,7 @@ export default function ButtonAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <DrawerComponent open={open} toggleDrawer={toggleDrawer} />
       <AppBar
-        sx={{ backgroundColor: '#ff6584' }}
+        sx={{ backgroundColor: '#7064fc', color: 'white' }}
         position="static"
         color="transparent"
       >
@@ -88,7 +89,7 @@ export default function ButtonAppBar() {
             sx={{ cursor: 'pointer' }}
             onClick={() => navigator('/')}
           >
-            PG-HUNT
+            EASY-PG
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           {auth ? (
@@ -99,9 +100,9 @@ export default function ButtonAppBar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="primary"
+                color="info"
               >
-                <AccountCircle />
+                <AccountCircle sx={{ color: '#fff' }} />
               </IconButton>
               <Menu
                 id="menu-appbar"

@@ -34,8 +34,8 @@ function SearchComponent({ isHome }) {
         padding: 2,
       }}
     >
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={11}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={10}>
           <TextField
             autoFocus
             id="search-for-pgs"
@@ -58,7 +58,7 @@ function SearchComponent({ isHome }) {
             }}
           />
         </Grid>
-        <Grid item xs={12} md={1}>
+        <Grid item xs={12} md={2}>
           <Button
             variant="contained"
             endIcon={<FilterAltIcon />}

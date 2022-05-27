@@ -52,7 +52,7 @@ export default function DrawerComponent({ open, toggleDrawer }) {
                 navigator('/create');
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon sx={{ color: 'rgba(220, 218, 222, 0.83)' }}>
                 <AddIcon />
               </ListItemIcon>
               <ListItemText primary="Create Post" />
@@ -63,7 +63,7 @@ export default function DrawerComponent({ open, toggleDrawer }) {
                 navigator('/myPosts');
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon sx={{ color: 'rgba(220, 218, 222, 0.83)' }}>
                 <DynamicFeedIcon />
               </ListItemIcon>
               <ListItemText primary="My Posts" />
@@ -89,7 +89,7 @@ export default function DrawerComponent({ open, toggleDrawer }) {
                   navigator('/favorites');
                 }}
               >
-                <ListItemIcon>
+                <ListItemIcon sx={{ color: 'rgba(220, 218, 222, 0.83)' }}>
                   <FavoriteIcon />
                 </ListItemIcon>
                 <ListItemText primary="Favorites" />
@@ -100,13 +100,13 @@ export default function DrawerComponent({ open, toggleDrawer }) {
                   navigator('/profile');
                 }}
               >
-                <ListItemIcon>
+                <ListItemIcon sx={{ color: 'rgba(220, 218, 222, 0.83)' }}>
                   <AccountCircleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Profile" />
               </ListItem>
               <ListItem button onClick={handleLogout}>
-                <ListItemIcon>
+                <ListItemIcon sx={{ color: 'rgba(220, 218, 222, 0.83)' }}>
                   <LogoutIcon />
                 </ListItemIcon>
                 <ListItemText primary="Logout" />
@@ -134,9 +134,10 @@ export default function DrawerComponent({ open, toggleDrawer }) {
         open={open}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
+        PaperProps={{ sx: { backgroundColor: '#0b0734e3', color: 'white' } }}
       >
         <Toolbar />
-        <Divider />
+        <Divider sx={{ backgroundColor: 'rgba(220, 218, 222, 0.43)' }} />
         {list()}
       </SwipeableDrawer>
     </div>

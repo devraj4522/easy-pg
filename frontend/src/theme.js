@@ -13,4 +13,8 @@ export const theme = {
     fontFamily: 'Roboto',
     fontWeight: '600',
   },
+
+  icon: {
+    color: 'rgba(220, 218, 222, 0.83)',
+  },
 };

@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import MyPGPostCard from './../components/MyPGPostCard';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Bottom } from './Bottom';
 
 const MyPostsScreen = () => {
   const dispatch = useDispatch();
@@ -13,32 +14,34 @@ const MyPostsScreen = () => {
     dispatch(viewAllPosts());
   }, [dispatch]);
   return (
-    <Box sx={{ m: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        My Posts
-      </Typography>
-      <Grid container spacing={2} alignItems="stretch">
-        {all_posts?.map((post) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            sx={{ display: 'flex' }}
-            key={post.postid}
-          >
-            {post && (
-              <MyPGPostCard
-                postid={post.postid}
-                name={post.name}
-                address={post.address}
-                photo={post.photo}
-              />
-            )}{' '}
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <>
+      <Box sx={{ m: 3 }}>
+        <Typography variant="h4" gutterBottom>
+          My Posts
+        </Typography>
+        <Grid container spacing={2} alignItems="space-around">
+          {all_posts?.map((post) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              sx={{ display: 'flex' }}
+              key={post.postid}
+            >
+              {post && (
+                <MyPGPostCard
+                  postid={post.postid}
+                  name={post.name}
+                  address={post.address}
+                  photo={post.photo}
+                />
+              )}{' '}
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </>
   );
 };
 
