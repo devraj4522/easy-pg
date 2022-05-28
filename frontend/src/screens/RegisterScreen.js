@@ -25,11 +25,8 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link
-        color="inherit"
-        href="" // TODO: Change to correct domain later PG-HUNT
-      >
-        PG-HUNT
+      <Link color="inherit" href="">
+        EASY-PG
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
