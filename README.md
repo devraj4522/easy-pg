@@ -1,7 +1,10 @@
 ## Easy Pg
+## TEST EMAIL AND PASSWORD:
+email3@email.com, pass- 1234
 ### Team Mates
 1. Suraj Kumar, College TMSL (EVG ID: )
 2. Dev Raj Singh, College TMSL (EVG ID: 22EVGHPN906909)
+
 
 ## Inspiration
 India is developing and so are the opportunities. Anyone living outside their home needs better accommodation and healthy food. The central theme is to Find suitable accommodation while you are away from home. Many of our friends are staying away from the family and home to have an excellent paying guest home with affordable pricing and a good living environment.
