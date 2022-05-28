@@ -48,7 +48,7 @@ const HomeScreen = () => {
           my: 5,
           p: 3,
           paddingX: { md: 18, xs: 2 },
-          background: '#f2f2f2',
+          background: '#f8f6fb',
         }}
         spacing={3}
         alignItems="space-between"
@@ -69,8 +69,8 @@ const HomeScreen = () => {
             common area is filled with everything you need to refresh your mind,
             soul and to take a break from the hard day.
           </Typography>
-          <Button variant="outlined" color="primary">
-            Primary
+          <Button variant="outlined" color="secondary" size="large" href="/">
+            Search PG
           </Button>
         </Grid>
         <Grid item xs={12} md={6}>
