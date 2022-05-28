@@ -1,3 +1,4 @@
+
 #                          ⭐⭐  Easy Pg   ⭐⭐
 ## Inspiration
 India is developing and so are the opportunities. Anyone living outside their home needs better accommodation and healthy food. The central theme is to Find suitable accommodation while you are away from home. Many of our friends are staying away from the family and home to have an excellent paying guest home with affordable pricing and a good living environment.
@@ -53,4 +54,5 @@ rest-api
 <img width="937" alt="image" src="https://user-images.githubusercontent.com/68156079/170816610-09b5c0a0-305f-4588-b0a3-a5f30c5462c5.png">
 <img width="903" alt="image" src="https://user-images.githubusercontent.com/68156079/170816632-dde27fdb-49fe-45fb-9bc1-a1e475a28420.png">
 <img width="901" alt="image" src="https://user-images.githubusercontent.com/68156079/170816668-af6fbac3-d935-46af-8c51-91c0f3e16bb4.png">
+
 
