@@ -3,7 +3,7 @@ import express from 'express';
 import {
   createPost,
   editPost,
-  removePost,
+  removeReview,
   viewAllReview,
   viewPosts,
   searchPosts,
@@ -15,7 +15,7 @@ router.post('/createpost', protect, verified, createPost);
 
 // router.put('/:id', protect, verified, editPost);
 
-// router.delete('/:id', protect, verified, removePost);
+router.delete('/:id', protect, verified, removeReview);
 
 router.post('/getreview', protect, viewAllReview);
 

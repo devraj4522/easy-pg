@@ -163,32 +163,36 @@ const editPost = expressAsyncHandler(async (req, res) => {
 });
 
 /**
- * @description deletes a post of PG
+ * @description delete a review of PG
  * @route  DELETE /api/posts/:id
  * @param {}
  * @returns [{postId: ObjectId, postName: String}]
  * @access Verified
  */
-const removePost = expressAsyncHandler(async (req, res) => {
+const removeReview = expressAsyncHandler(async (req, res) => {
   try {
-    const postid = req.params.id;
+    const reviewid = req.params.id;
     const userid = req.user._id;
-    const post = await Post.findOne({ id: postid, 'createdBy.userId': userid });
-    if (post) {
-      await Post.deleteOne({ _id: postid });
+    const review = await Review.findOne({
+      id: reviewid,
+      'createdBy.userId': userid,
+    });
+    // console.log(reviewid);
+    if (review) {
+      await Review.deleteOne({ _id: reviewid });
       User.findByIdAndUpdate(
         userid,
-        { $pull: { posts: { postId: postid } } },
+        { $pull: { reviews: { reviewId: reviewid } } },
         { new: true },
         (err, userRes) => {
           if (err) {
             res.status(400).send(`Deletion unsuccessful!`);
           }
-          res.json(userRes.posts);
+          res.json(userRes.reviews);
         }
       );
     } else {
-      res.status(404).send({ message: 'post not found' });
+      res.status(404).send({ message: 'review not found' });
     }
   } catch (error) {
     res.status(400).send({ message: `Something went wrong` });
@@ -197,7 +201,7 @@ const removePost = expressAsyncHandler(async (req, res) => {
 
 /**
  * @description View all reviews of a PG
- * @route  GET /api/posts/
+ * @route  GET /api/reviews/
  * @param  {reviewId: "String"}
  * @returns name: String,
         location: Object,
@@ -297,7 +301,7 @@ const searchPosts = expressAsyncHandler(async (req, res) => {
 export {
   createPost,
   editPost,
-  removePost,
+  removeReview,
   viewAllReview,
   viewPosts,
   searchPosts,
