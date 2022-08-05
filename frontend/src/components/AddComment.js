@@ -41,7 +41,9 @@ const AddComment = () => {
     setTile('');
     setUrl('');
     setRating(1);
-    history(0);
+    setTimeout(() => {
+      history(0);
+    }, 500);
   };
 
   return (
