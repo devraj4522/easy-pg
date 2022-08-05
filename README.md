@@ -1,4 +1,4 @@
-## Easy Pg
+## 🏠 Easy Pg 🏠
 ## EMAIL AND PASSWORD (TEST):
 email3@email.com, pass- 1234
 
