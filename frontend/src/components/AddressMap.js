@@ -8,7 +8,7 @@ const Map = ReactMapboxGl({
 
 const AddressMap = (props) => {
   const leftMargin = props.sideBarVis ? '15vw' : '0';
-  console.log(props.sideBarVis);
+  // console.log(props.sideBarVis);
 
   return (
     <div className="map-container">

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const WhishListScreen = () => {
   return <div>WhishListScreen</div>;

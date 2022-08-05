@@ -1,7 +1,14 @@
 import express from 'express';
 
-import { createPost, editPost, removePost, viewPost, viewPosts, searchPosts } from '../controllers/post.js';
-import { protect, verified } from "../middleware/authMiddleware.js";
+import {
+  createPost,
+  editPost,
+  removePost,
+  viewPost,
+  viewPosts,
+  searchPosts,
+} from '../controllers/post.js';
+import { protect, verified } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 

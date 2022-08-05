@@ -16,6 +16,14 @@ import {
   searchReducer,
 } from './redux/reducers/postReducer';
 
+import {
+  createReviewReducer,
+  editReviewReducer,
+  deleteReviewReducer,
+  viewReviewReducer,
+  viewAllReviewsReducer,
+} from './redux/reducers/reviewReducer';
+
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -26,6 +34,14 @@ const reducer = combineReducers({
     deletePost: deletePostReducer,
     viewPost: viewPostReducer,
     viewAllPosts: viewAllPostsReducer,
+    search: searchReducer,
+  }),
+  reviews: combineReducers({
+    createReview: createReviewReducer,
+    editReview: editReviewReducer,
+    deleteReview: deleteReviewReducer,
+    viewReview: viewReviewReducer,
+    viewAllReviews: viewAllReviewsReducer,
     search: searchReducer,
   }),
 });

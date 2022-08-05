@@ -2,75 +2,77 @@ import expressAsyncHandler from 'express-async-handler';
 import mongoose from 'mongoose';
 import Post from '../models/postModel.js';
 import User from '../models/userModel.js';
+import Review from '../models/reviewModel.js';
 
 /**
- * @description creates a post of PG
- * @route  GET /api/posts/createpost
- * @param  {name: String*, location: {lat*, long*}, description, address*, types: [{share*: String, price*: Number}], gender*: Boys|Girls|Both,
- * meal: {weekdays*: [Breakfast|Lunch|Dinner], weekends*: [Breakfast|Lunch|Dinner], options*: 'Veg-Only'|'Non-Veg'}, maintenance*: Number,
- * gateOpen: String, gateClose: String, amenities: { laundry: Boolean, refrigerator: Boolean, tv: Boolean, wifi: Boolean, bed: Boolean},
- * contact: [Number]+, media: [String]+,}
-
- * @returns {name: String, address: String, amenities: Object, photo: String(Link)}
+ * @description creates a review of PG
+ * @route  GET /api/reviews/createpost
+ * @param  {title: String*, description: String*, rating: 1|2|3|4|5,
+ * media: [String]+}
+ *
+ * @returns {title: String, description: String, rating: Number, photo: String(Link)}
  * @access Verified
  */
 const createPost = expressAsyncHandler(async (req, res) => {
   try {
     const userid = req.user._id;
+    const postid = req.body.post;
     const user = await User.findById(userid);
+    const post = await Post.findById(postid);
+
+    if (!post)
+      res.status(400).send({ message: 'Invalid Post Id, Post not found' });
+
     const format = {
-      name: req.body.name,
-      location: {
-        lat: req.body.location.lat,
-        long: req.body.location.long,
-      },
+      title: req.body.title,
       description: req.body.description,
-      address: req.body.address,
-      types: req.body.types,
-      gender: req.body.gender,
-      meal: {
-        weekdays: req.body.meal.weekdays,
-        weekends: req.body.meal.weekends,
-        options: req.body.meal.options,
-      },
-      maintenance: req.body.maintenance,
-      gateOpen: req.body.gateOpen,
-      gateClose: req.body.gateClose,
-      amenities: {
-        laundry: req.body.amenities.laundry,
-        refrigerator: req.body.amenities.refrigerator,
-        tv: req.body.amenities.tv,
-        wifi: req.body.amenities.wifi,
-        bed: req.body.amenities.bed,
-      },
-      contact: req.body.contact,
+      rating: req.body.rating,
       media: req.body.media,
       createdBy: {
-        userId: userid,
+        userId: user._id,
         userName: user.name,
       },
+      reviewFor: {
+        postId: postid,
+        postTitle: post.name,
+      },
     };
-    const post = await Post.create(format);
-    if (post) {
+
+    const review = await Review.create(format);
+    if (review) {
       await User.updateOne(
         { _id: userid },
         {
           $push: {
-            posts: {
-              postId: post._id,
-              postName: post.name,
+            reviews: {
+              reviewId: review._id,
+              title: review.title,
             },
           },
         }
       );
+
+      //   append to posts
+      await Post.updateOne(
+        { _id: postid },
+        {
+          $push: {
+            reviews: {
+              reviewId: review._id,
+              title: review.title,
+            },
+          },
+        }
+      );
+
       res.status(201).json({
-        name: post.name,
-        address: post.address,
-        amenities: post.amenities,
-        photo: post.media[0],
+        title: review.title,
+        description: review.description,
+        rating: review.rating,
+        photo: review.media[0],
       });
     } else {
-      res.status(400).send({ message: 'Invalid post data' });
+      res.status(400).send({ message: 'Invalid review data' });
     }
   } catch (error) {
     res.status(400).send({ message: `Something went wrong : \n${error}` });
@@ -194,10 +196,10 @@ const removePost = expressAsyncHandler(async (req, res) => {
 });
 
 /**
- * @description View a certain post of PG
- * @route  GET /api/posts/:id
- * @param  {}
- * @returns {name: String,
+ * @description View all reviews of a PG
+ * @route  GET /api/posts/
+ * @param  {reviewId: "String"}
+ * @returns name: String,
         location: Object,
         description: String,
         address: String,
@@ -211,32 +213,17 @@ const removePost = expressAsyncHandler(async (req, res) => {
         media: [String]+,
         contact: [Number]+,
         createdBy: {userId: ObjectId, userName: String},
-        createdAt: Timestamp,}
+        createdAt: Timestamp,} 
  * @access Verified
  */
-const viewPost = expressAsyncHandler(async (req, res) => {
+const viewAllReview = expressAsyncHandler(async (req, res) => {
   try {
-    const postid = req.params.id;
-    const post = await Post.findById(postid);
-    if (post) {
-      res.json({
-        id: post._id,
-        name: post.name,
-        location: post.location,
-        description: post.description,
-        address: post.address,
-        types: post.types,
-        gender: post.gender,
-        meal: post.meal,
-        maintenance: post.maintenance,
-        gateOpen: post.gateOpen,
-        gateClose: post.gateClose,
-        amenities: post.amenities,
-        media: post.media,
-        contact: post.contact,
-        createdBy: post.createdBy,
-        createdAt: post.createdAt,
-      });
+    const postid = req.body.postId;
+    const userid = req.user._id;
+    const review = await Review.find({ 'reviewFor.postId': postid });
+
+    if (review) {
+      res.json(review);
     } else {
       res.status(400).send({ message: 'Post not found' });
     }
@@ -307,4 +294,11 @@ const searchPosts = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { createPost, editPost, removePost, viewPost, viewPosts, searchPosts };
+export {
+  createPost,
+  editPost,
+  removePost,
+  viewAllReview,
+  viewPosts,
+  searchPosts,
+};

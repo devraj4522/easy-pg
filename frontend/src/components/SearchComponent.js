@@ -17,7 +17,7 @@ function SearchComponent({ isHome }) {
   const [data, setData] = useState('');
   const handleSearch = (e) => {
     dispatch(searchAction({ searchText: data }));
-    console.log({ searchText: data });
+    // console.log({ searchText: data });
     if (isHome) history('/pgs/');
   };
   const handleSearchByKeyDown = (e) => {
@@ -49,7 +49,7 @@ function SearchComponent({ isHome }) {
             onKeyDown={handleSearchByKeyDown}
             InputProps={{
               endAdornment: (
-                <InputAdornment onClick={handleSearch}>
+                <InputAdornment onClick={handleSearch} position={'start'}>
                   <IconButton>
                     <SearchIcon />
                   </IconButton>

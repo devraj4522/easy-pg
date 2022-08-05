@@ -41,6 +41,17 @@ const userSchema = mongoose.Schema({
       },
     },
   ],
+  reviews: [
+    {
+      reviewId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review',
+      },
+      title: {
+        type: String,
+      },
+    },
+  ],
   wishlist: [
     {
       pgId: {

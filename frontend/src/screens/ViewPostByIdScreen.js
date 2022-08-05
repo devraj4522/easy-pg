@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { viewPost } from '../redux/actions/postActions';
@@ -16,6 +16,9 @@ import KingBedIcon from '@mui/icons-material/KingBed';
 // import GoogleMapComponent from '../components/GoogleMapComponent';
 import AddressMap from '../components/AddressMap';
 import { Threebox } from 'threebox-plugin';
+import AddComment from '../components/AddComment';
+import ReviewCard from '../components/ReviewCard';
+import { viewReview } from '../redux/actions/commentActions';
 
 const ViewPostByIdScreen = () => {
   const dispatch = useDispatch();
@@ -27,7 +30,7 @@ const ViewPostByIdScreen = () => {
   }, [dispatch, params.id]);
 
   const loadLocations = (map, coords) => {
-    console.log('load');
+    // console.log('load');
     let truck;
 
     map.addLayer({
@@ -47,10 +50,10 @@ const ViewPostByIdScreen = () => {
         };
 
         for (let i = 0; i < coords.length; i++) {
-          console.log(coords);
+          // console.log(coords);
           const coord = coords[i];
           window.tb.loadObj(options, function (model) {
-            console.log('placing');
+            // console.log('placing');
             truck = model.setCoords([coord.long, coord.lat]);
             window.tb.add(truck);
             let rotation = 0;
@@ -122,15 +125,15 @@ const ViewPostByIdScreen = () => {
                 <b>Gate Close Timings</b> : {current_post.gateClose}
               </Typography>
               <Stack sx={{ mt: 2 }}>
-                {current_post.types?.map((type) => (
-                  <>
-                    <Typography variant="h4" gutterBottom key={type}>
+                {current_post.types?.map((type, id) => (
+                  <Fragment key={id}>
+                    <Typography variant="h4" gutterBottom key={id}>
                       ₹{type.price}/
-                      <Typography variant="overline" gutterBottom key={type}>
+                      <Typography variant="overline" gutterBottom key={id}>
                         {type.share} person room
                       </Typography>
                     </Typography>
-                  </>
+                  </Fragment>
                 ))}
               </Stack>
             </Box>
@@ -197,6 +200,12 @@ const ViewPostByIdScreen = () => {
             </Grid>
           </Grid>
         </Box>
+      </Box>
+
+      <Box sx={{ maxWidth: '1250px', my: 5, mx: 'auto' }}>
+        <AddComment />
+
+        <ReviewCard />
       </Box>
     </>
   );

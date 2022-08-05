@@ -33,7 +33,7 @@ const login = async (req, res) => {
 };
 
 /**
- * @description egsiter new user
+ * @description regsiter new user
  * @access Public
  * @route POST api/users/register
  * @param  {email,name,password,phone}
