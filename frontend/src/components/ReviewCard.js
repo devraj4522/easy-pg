@@ -61,6 +61,7 @@ function ReviewCard(props) {
             avatar={<Avatar src={avatarSrc} />}
             sx={{
               background: grey[50],
+              px: { xs: 1, sm: 5 },
             }}
             component="div"
             title={
@@ -125,8 +126,11 @@ function ReviewCard(props) {
               </>
             }
           />
-          <CardContent classes={{ root: classes.cardContent }}>
-            <Box
+          <CardContent
+            classes={{ root: classes.cardContent }}
+            sx={{ p: 0, m: 0, mt: -1 }}
+          >
+            {/* <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -134,11 +138,11 @@ function ReviewCard(props) {
                 py: 2,
               }}
               component="div"
-            ></Box>
+            ></Box> */}
             <CardMedia
               component="img"
               height="350"
-              sx={{ borderRadius: 1 }}
+              sx={{ borderRadius: 0, m: 0, p: 0 }}
               src={
                 item.media.length
                   ? item.media[0]
@@ -149,7 +153,8 @@ function ReviewCard(props) {
 
             <Box>
               <Typography component="p" sx={{ px: 1, pt: 1 }}>
-                {item.description}
+                <span style={{ fontWeight: 600 }}>Description:</span>{' '}
+                {' ' + item.description}
               </Typography>
             </Box>
           </CardContent>
