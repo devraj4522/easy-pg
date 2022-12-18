@@ -24,7 +24,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "threebox-plugin": "^2.2.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-mapbox-gl": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
