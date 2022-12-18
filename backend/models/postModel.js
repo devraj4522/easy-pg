@@ -16,17 +16,6 @@ const postSchema = mongoose.Schema(
         required: true,
       },
     },
-    reviews: [
-      {
-        reviewId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Review',
-        },
-        title: {
-          type: String,
-        },
-      },
-    ],
     description: {
       type: String,
     },

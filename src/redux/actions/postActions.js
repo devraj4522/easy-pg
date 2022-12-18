@@ -1,30 +1,30 @@
 import axios from 'axios';
 import {
-  CREATE_REVIEW_REQUEST,
-  CREATE_REVIEW_SUCCESS,
-  CREATE_REVIEW_FAIL,
-  EDIT_REVIEW_REQUEST,
-  EDIT_REVIEW_SUCCESS,
-  EDIT_REVIEW_FAIL,
-  DELETE_REVIEW_REQUEST,
-  DELETE_REVIEW_SUCCESS,
-  DELETE_REVIEW_FAIL,
-  VIEW_REVIEW_REQUEST,
-  VIEW_REVIEW_SUCCESS,
-  VIEW_REVIEW_FAIL,
-  VIEW_ALL_REVIEWS_REQUEST,
-  VIEW_ALL_REVIEWS_SUCCESS,
-  VIEW_ALL_REVIEWS_FAIL,
+  CREATE_POST_REQUEST,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_FAIL,
+  EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_FAIL,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAIL,
+  VIEW_POST_REQUEST,
+  VIEW_POST_SUCCESS,
+  VIEW_POST_FAIL,
+  VIEW_ALL_POSTS_REQUEST,
+  VIEW_ALL_POSTS_SUCCESS,
+  VIEW_ALL_POSTS_FAIL,
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_FAIL,
-} from '../constants/reviewConstrants.js';
+} from '../constants/postConstants';
 import { toast } from 'react-toastify';
 
-export const createReview = (reviewDetails) => async (dispatch, getState) => {
+export const createPost = (postDetails) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: CREATE_REVIEW_REQUEST,
+      type: CREATE_POST_REQUEST,
     });
 
     const {
@@ -39,17 +39,17 @@ export const createReview = (reviewDetails) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      '/api/reviews/createpost',
-      reviewDetails,
+      '/api/posts/createpost',
+      postDetails,
       config
     );
 
     dispatch({
-      type: CREATE_REVIEW_SUCCESS,
+      type: CREATE_POST_SUCCESS,
       payload: data,
     });
 
-    toast.success(`Review Created successfully!`);
+    toast.success(`Post Created successfully!`);
   } catch (error) {
     const err =
       error.response && error.response.data.message
@@ -57,59 +57,16 @@ export const createReview = (reviewDetails) => async (dispatch, getState) => {
         : error.message;
     toast.error(`Error: ${err}`);
     dispatch({
-      type: CREATE_REVIEW_FAIL,
+      type: CREATE_POST_FAIL,
       payload: err,
     });
   }
 };
 
-export const editReview =
-  (reviewId, reviewDetails) => async (dispatch, getState) => {
-    try {
-      dispatch({
-        type: EDIT_REVIEW_REQUEST,
-      });
-
-      const {
-        userLogin: { userInfo },
-      } = getState();
-
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
-
-      const { data } = await axios.put(
-        `/api/reviews/${reviewId}`,
-        reviewDetails,
-        config
-      );
-
-      dispatch({
-        type: EDIT_REVIEW_SUCCESS,
-        payload: data,
-      });
-
-      toast.success(`Review Edited successfully!`);
-    } catch (error) {
-      const err =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      toast.error(`Error: ${err}`);
-      dispatch({
-        type: EDIT_REVIEW_FAIL,
-        payload: err,
-      });
-    }
-  };
-
-export const deleteReview = (id) => async (dispatch, getState) => {
+export const editPost = (postId, postDetails) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: DELETE_REVIEW_REQUEST,
+      type: EDIT_POST_REQUEST,
     });
 
     const {
@@ -123,61 +80,18 @@ export const deleteReview = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/reviews/${id}`, config);
-    dispatch({
-      type: DELETE_REVIEW_SUCCESS,
-    });
-
-    dispatch(viewAllReviews());
-
-    toast.success(`Review Deleted successfully!`);
-  } catch (error) {
-    const err =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    toast.error(`Error: ${err}`);
-    dispatch({
-      type: DELETE_REVIEW_FAIL,
-      payload: err,
-    });
-  }
-};
-
-export const viewReview = () => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: VIEW_REVIEW_REQUEST,
-    });
-
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const {
-      posts: {
-        viewPost: { current_post },
-      },
-    } = getState();
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const postId = current_post.id;
-    const { data } = await axios.post(
-      '/api/reviews/getreview',
-      { postId },
+    const { data } = await axios.put(
+      `/api/posts/${postId}`,
+      postDetails,
       config
     );
+
     dispatch({
-      type: VIEW_REVIEW_SUCCESS,
+      type: EDIT_POST_SUCCESS,
       payload: data,
     });
-    // console.log(getState());
+
+    toast.success(`Post Edited successfully!`);
   } catch (error) {
     const err =
       error.response && error.response.data.message
@@ -185,16 +99,16 @@ export const viewReview = () => async (dispatch, getState) => {
         : error.message;
     toast.error(`Error: ${err}`);
     dispatch({
-      type: VIEW_REVIEW_FAIL,
+      type: EDIT_POST_FAIL,
       payload: err,
     });
   }
 };
 
-export const viewAllReviews = () => async (dispatch, getState) => {
+export const deletePost = (id) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: VIEW_ALL_REVIEWS_REQUEST,
+      type: DELETE_POST_REQUEST,
     });
 
     const {
@@ -208,10 +122,48 @@ export const viewAllReviews = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/reviews/`, config);
+    const { data } = await axios.delete(`/api/posts/${id}`, config);
+    dispatch({
+      type: DELETE_POST_SUCCESS,
+    });
+
+    dispatch(viewAllPosts());
+
+    toast.success(`Post Deleted successfully!`);
+  } catch (error) {
+    const err =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    toast.error(`Error: ${err}`);
+    dispatch({
+      type: DELETE_POST_FAIL,
+      payload: err,
+    });
+  }
+};
+
+export const viewPost = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: VIEW_POST_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/posts/${id}`, config);
 
     dispatch({
-      type: VIEW_ALL_REVIEWS_SUCCESS,
+      type: VIEW_POST_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -221,7 +173,43 @@ export const viewAllReviews = () => async (dispatch, getState) => {
         : error.message;
     toast.error(`Error: ${err}`);
     dispatch({
-      type: VIEW_ALL_REVIEWS_FAIL,
+      type: VIEW_POST_FAIL,
+      payload: err,
+    });
+  }
+};
+
+export const viewAllPosts = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: VIEW_ALL_POSTS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/posts/`, config);
+
+    dispatch({
+      type: VIEW_ALL_POSTS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const err =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    toast.error(`Error: ${err}`);
+    dispatch({
+      type: VIEW_ALL_POSTS_FAIL,
       payload: err,
     });
   }
@@ -244,7 +232,7 @@ export const searchAction = (search) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/reviews/search`, search, config);
+    const { data } = await axios.post(`/api/posts/search`, search, config);
 
     dispatch({
       type: SEARCH_SUCCESS,

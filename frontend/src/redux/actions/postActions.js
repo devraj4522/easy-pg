@@ -161,6 +161,7 @@ export const viewPost = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(`/api/posts/${id}`, config);
+
     dispatch({
       type: VIEW_POST_SUCCESS,
       payload: data,

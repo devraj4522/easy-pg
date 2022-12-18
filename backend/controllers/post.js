@@ -220,7 +220,6 @@ const viewPost = expressAsyncHandler(async (req, res) => {
     const post = await Post.findById(postid);
     if (post) {
       res.json({
-        id: post._id,
         name: post.name,
         location: post.location,
         description: post.description,

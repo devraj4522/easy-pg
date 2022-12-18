@@ -3,7 +3,6 @@ import { config } from 'dotenv';
 import connectDB from './config/db.js';
 import postRoutes from './routes/postRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import reviewRoutes from './routes/reviewRoutes.js';
 import path from 'path';
 import morgan from 'morgan';
 
@@ -13,7 +12,6 @@ connectDB();
 const app = express();
 app.use(express.json());
 
-app.use('/api/reviews', reviewRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 

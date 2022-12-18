@@ -20,7 +20,6 @@ const login = async (req, res) => {
         phone: user.phone,
         email: user.email,
         name: user.name,
-        review: user.reviews,
         isAdmin: user.isAdmin,
         isVerified: user.isVerified,
         token: generateToken(user._id),
@@ -34,7 +33,7 @@ const login = async (req, res) => {
 };
 
 /**
- * @description regsiter new user
+ * @description egsiter new user
  * @access Public
  * @route POST api/users/register
  * @param  {email,name,password,phone}
