@@ -39,5 +39,8 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.1"
+  },
+  "engines": {
+    "node": "19.1.0"
   }
 }
