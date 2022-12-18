@@ -14,7 +14,7 @@ import TvIcon from '@mui/icons-material/Tv';
 import NetworkWifiIcon from '@mui/icons-material/NetworkWifi';
 import KingBedIcon from '@mui/icons-material/KingBed';
 // import GoogleMapComponent from '../components/GoogleMapComponent';
-import AddressMap from '../components/AddressMap';
+// import AddressMap from '../components/AddressMap';
 import { Threebox } from 'threebox-plugin';
 
 const ViewPostByIdScreen = () => {
@@ -186,14 +186,14 @@ const ViewPostByIdScreen = () => {
               </Typography>
             </Grid>
             <Grid item md={6}>
-              <AddressMap
-                mapLoad={(map) => {
-                  setTimeout(() => {
-                    window.map = map;
-                    loadLocations(map, locations);
-                  }, 2000);
-                }}
-              />
+//               <AddressMap
+//                 mapLoad={(map) => {
+//                   setTimeout(() => {
+//                     window.map = map;
+//                     loadLocations(map, locations);
+//                   }, 2000);
+//                 }}
+//               />
             </Grid>
           </Grid>
         </Box>
