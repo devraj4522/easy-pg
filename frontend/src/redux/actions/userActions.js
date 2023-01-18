@@ -13,6 +13,8 @@ import {
 } from '../constants/userConstants';
 import { toast } from 'react-toastify';
 
+axios.defaults.baseURL = 'https://easypg-production.up.railway.app/';
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({

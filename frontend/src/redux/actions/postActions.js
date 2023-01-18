@@ -21,6 +21,8 @@ import {
 } from '../constants/postConstants';
 import { toast } from 'react-toastify';
 
+axios.defaults.baseURL = 'https://easypg-production.up.railway.app/';
+
 export const createPost = (postDetails) => async (dispatch, getState) => {
   try {
     dispatch({
