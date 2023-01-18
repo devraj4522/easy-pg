@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactMapboxGl from 'react-mapbox-gl';
+// import ReactMapboxGl from 'react-mapbox-gl';
 
-const Map = ReactMapboxGl({
-  accessToken:
-    'pk.eyJ1IjoiZW1pbmd1eWVuIiwiYSI6ImNrOGI2ZjRyODA1aHEzZG93cmFxaHR5d2IifQ.x8v_uFbdBanYgRtoKCGIOw',
-});
+// const Map = ReactMapboxGl({
+//   accessToken:
+//     'pk.eyJ1IjoiZW1pbmd1eWVuIiwiYSI6ImNrOGI2ZjRyODA1aHEzZG93cmFxaHR5d2IifQ.x8v_uFbdBanYgRtoKCGIOw',
+// });
 
 const AddressMap = (props) => {
   const leftMargin = props.sideBarVis ? '15vw' : '0';
@@ -12,7 +12,7 @@ const AddressMap = (props) => {
 
   return (
     <div className="map-container">
-      <Map
+      {/* <Map
         antialias={true}
         containerStyle={{
           height: '430px',
@@ -35,7 +35,7 @@ const AddressMap = (props) => {
         pitch={[60]}
         style="mapbox://styles/mapbox/streets-v11"
         zoom={[16]}
-      ></Map>
+      ></Map> */}
     </div>
   );
 };
