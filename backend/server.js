@@ -14,7 +14,11 @@ const app = express();
 app.use(express.json());
 
 // allow cors
-app.use(cors);
+app.use(cors({
+  origin: '*',
+  optionsSuccessStatus: 200
+}));
+
 
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
