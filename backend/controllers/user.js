@@ -36,7 +36,7 @@ const addToWishlist = async (req, res) => {
         { _id: user._id },
         { wishlist: { $elemMatch: { pgId: post._id } } }
       );
-      if (posts[0]?.wishlist && posts[0]?.wishlist?.length > 0) {
+      if (posts[0].wishlist && posts[0].wishlist.length > 0) {
         res.status(400).send({ message: 'Already in wishlist' });
         return;
       }
